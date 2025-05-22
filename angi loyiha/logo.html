@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRAINSTORM</title>
+  <link rel="shortcut icon" href="https://ccbs.carney.brown.edu/sites/default/files/2021-09/Brain-Wave.gif" type="image/x-icon">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      font-family: sans-serif;
+      background-image: url('https://habrastorage.org/getpro/habr/upload_files/56a/51e/644/56a51e6445045345f9f6338f59fd9294.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 450px;
+      min-height: 600px;
+      padding: 40px 20px;
+      border-radius: 20px;
+      box-shadow: 0px 20px 40px rgba(66, 150, 150, 0.76);
+      background-color: rgba(91, 138, 138, 0.342); 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      animation: fadeZoom 1.5s ease forwards;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    @keyframes fadeZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .icon2 {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      animation: popIn 1s ease forwards;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      animation: slideIn 1.2s ease-in-out forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #f0f0f0;
+    }
+
+    .tugma {
+      font-size: 22px;
+      font-weight: bold;
+      width: 230px;
+      height: 60px;
+      color: white;
+      border-radius: 30px;
+      background: linear-gradient(120deg, rgb(0, 204, 255), rgb(255, 2, 2));
+      background-size: 200% auto;
+      box-shadow: 0px 0px 15px rgba(21, 11, 173, 0.6);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .tugma:hover {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    .tugma:active {
+      transform: scale(0.98);
+    }
+
+    .tugma::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+      0% { left: -75%; }
+      100% { left: 125%; }
+    }
+
+    @media (max-width: 480px) {
+      .box {
+        padding: 25px 15px;
+        min-height: 540px;
+      }
+
+      .icon2 {
+        width: 130px;
+        height: 130px;
+      }
+
+      h1 {
+        font-size: 26px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      .tugma {
+        width: 200px;
+        height: 55px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img src="https://ccbs.carney.brown.edu/sites/default/files/2021-09/Brain-Wave.gif" alt="icon" class="icon2">
+    
+    <p>Ushbu web sahifada siz turli xildagi mantiqiy savollar va topishmoqlarni topishingiz mumkin.</p>
+    <form action="./mainmenu.html">
+      <button class="tugma">BOSHLASH</button>
+    </form>
+  </div>
+</body>
+</html>

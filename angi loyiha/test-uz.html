@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZIYOTOP - Mantiqiy Savollar (O'zbek)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .question-box {
+      border: 2px solid #0077cc;
+      background-color: white;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px auto;
+      max-width: 700px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .question-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .question {
+      font-weight: bold;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: #333;
+    }
+    .toggle-btn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .toggle-btn:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+<h1>O'zbekcha Mantiqiy Savollar</h1>
+
+<div id="quiz-container"></div>
+
+<script>
+  const quizData = [
+    { q: "1. Daraxtda 10 ta qush o'tirgan edi. Ovchi birini otib tushirdi. Nechta qush qoladi?", a: "Hech biri qolmaydi, qolganlari uchib ketadi." },
+    { q: "2. Kunlarning qaysi biri boshqa kunlarning oldida keladi?", a: "Kelajak kuni." },
+    { q: "3. Bir odam bir soatda 1 teshik qaziydi. 6 soatda nechta teshik qaziydi?", a: "6 teshik." },
+    { q: "4. Qaysi oyda 28 kun bo‘ladi?", a: "Har bir oyda 28 kun bor." },
+    { q: "5. 5 dona sham yonmoqda. 2 tasini o‘chirildi. Nechtasi qoladi?", a: "2 tasi qoladi (o‘chirilganlar). Qolgani eriydi." },
+    { q: "6. Agar kecha ertangi kun bo‘lsa, bugun qanday kun?", a: "Bugun chorshanba." },
+    { q: "7. Qaysi narsa to‘liq bo‘lishi bilan yengil bo‘ladi?", a: "Teshik (tupa yoki mesh)." },
+    { q: "8. Qaysi soat bir kunda 2 marta noto‘g‘ri vaqtni to‘g‘ri ko‘rsatadi?", a: "To‘xtab qolgan soat." },
+    { q: "9. Qaysi narsaning boshi, oyoq-qo‘li yo‘q, lekin yuradi?", a: "Soat." },
+    { q: "10. Agar 2 + 2 = 22 bo‘lsa, unda 3 + 3 = ?", a: "33 (raqamlar yonma-yon yozilgan)." },
+    { q: "11. Qaysi narsa to‘liq bo‘lishi bilan yengil bo‘ladi?", a: "Ballon." },
+    { q: "12. Qaysi xona ichida yurib bo‘lmaydi?", a: "Telefon xona." },
+    { q: "13. Qaysi hayvon har doim orqaga yuradi?", a: "Qisqichbaqa." },
+    { q: "14. 3 ta tuxumni 3 daqiqada pishirish mumkin. 6 ta tuxumni nechta daqiqada pishirasiz?", a: "3 daqiqa (hammasini birga pishirsa)." },
+    { q: "15. 1 kg temir va 1 kg paxta – qaysi biri og‘ir?", a: "Ikkalasi teng – 1 kg." },
+    { q: "16. Agar sizning 3 ta olmaning 2 tasini olsam, sizda nechta qoladi?", a: "1 ta qoladi." },
+    { q: "17. Dunyoda eng uzoq gap nima?", a: "Og‘izdan chiqquncha yurakdan chiqadigan gap." },
+    { q: "18. Qanday idish hech qachon to‘lmaydi?", a: "Teshib qo‘yilgan idish." },
+    { q: "19. Yomg‘ir yog‘ayotgan paytda eng kam ho‘l bo‘ladigan narsa nima?", a: "Soyabon." },
+    { q: "20. U yerga borasiz, lekin hech qachon yetib bormaysiz?", a: "Kelajak." },
+    { q: "21. Qaysi narsa borligi bilinmaydi, yo‘qligida yetishmaydi?", a: "Havo." },
+    { q: "22. Qaysi narsa qanoti yo‘q, ammo uchadi?", a: "Vaqt." },
+    { q: "23. Beshta barmoq bor, lekin qo‘l emas. Nima bu?", a: "Qo‘lqop." },
+    { q: "24. Nima doimo oldinga qaraydi, lekin joyidan qimirlamaydi?", a: "Ko‘zoynak." },
+    { q: "25. Kechasi bor, kunduzi yo‘q. Nima bu?", a: "Yulduzlar." },
+    { q: "26. Uyning ichida doimo ustiga yuriladi?", a: "Pol." },
+    { q: "27. Oq bo‘lishi mumkin, qora bo‘lishi mumkin, ammo yozadi. Nima bu?", a: "Qalam." },
+    { q: "28. Qaysi meva har doim kuladi?", a: "Anor." },
+    { q: "29. Qanday suv ichilmaydi?", a: "Dengiz suvi." },
+    { q: "30. Bir qush havoda 5 metr balandlikda uchib ketayotgan bo‘lsa, uning soyasi qaerda?", a: "Yerda." }
+  ];
+
+  const container = document.getElementById("quiz-container");
+  quizData.forEach((item) => {
+    const box = document.createElement("div");
+    box.className = "question-box";
+
+    const question = document.createElement("div");
+    question.className = "question";
+    question.textContent = item.q;
+
+    const answer = document.createElement("div");
+    answer.className = "answer";
+    answer.textContent = item.a;
+
+    const button = document.createElement("button");
+    button.className = "toggle-btn";
+    button.textContent = "Javobni ko‘rish";
+    button.addEventListener("click", () => {
+      if (answer.style.display === "none" || answer.style.display === "") {
+        answer.style.display = "block";
+        button.textContent = "Javobni yashirish";
+      } else {
+        answer.style.display = "none";
+        button.textContent = "Javobni ko‘rish";
+      }
+    });
+
+    box.appendChild(question);
+    box.appendChild(button);
+    box.appendChild(answer);
+    container.appendChild(box);
+  });
+</script>
+
+</body>
+</html>

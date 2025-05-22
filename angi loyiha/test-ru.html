@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Логическая Викторина</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 15px;
+      background: #f7f9fc;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .question-box {
+      border: 2px solid #9b59b6;
+      border-radius: 10px;
+      background-color: #ffffff;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .question-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      color: green;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #9b59b6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #8e44ad;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Логическая Викторина</h1>
+
+  <div id="quiz-container"></div>
+
+  <script>
+    const questions = [
+      { q: "Что поднимается вверх, но никогда не опускается?", a: "Возраст." },
+      { q: "Что всегда перед тобой, но ты не можешь этого увидеть?", a: "Будущее." },
+      { q: "У чего есть глаза, но оно не видит?", a: "Игла." },
+      { q: "Что становится влажнее, когда сушит?", a: "Полотенце." },
+      { q: "Что можно поймать, но нельзя бросить?", a: "Простуду." },
+      { q: "Что можно сломать, не касаясь?", a: "Обещание." },
+      { q: "Что имеет голову и хвост, но не имеет тела?", a: "Монета." },
+      { q: "Что идёт, но не ходит?", a: "Время." },
+      { q: "У кого много зубов, но он не кусается?", a: "Гребень." },
+      { q: "Что имеет шесть ног и может летать?", a: "Насекомое." },
+      { q: "Что всегда в углу, но путешествует по всему миру?", a: "Почтовая марка." },
+      { q: "Что растёт, когда его отнимают?", a: "Дыра." },
+      { q: "Что имеет уши, но не слышит?", a: "Кукурузное поле." },
+      { q: "Чем больше берёшь, тем больше оставляешь. Что это?", a: "Следы." },
+      { q: "Какое слово всегда пишется неправильно в словарях?", a: "Неправильно (неправильно)." },
+      { q: "Кто ходит на четырёх ногах утром, на двух днем, и на трёх вечером?", a: "Человек." },
+      { q: "Что полное дыр, но всё же держит воду?", a: "Губка." },
+      { q: "Что имеет шея, но не имеет головы?", a: "Бутылка." },
+      { q: "Что имеет ключи, но не открывает двери?", a: "Пианино." },
+      { q: "Что начинается с буквы 'Т', заканчивается 'Т' и содержит 'Т'?", a: "Чайник." },
+      { q: "Что имеет сердце, но не имеет других органов?", a: "Колода карт." },
+      { q: "Что можно увидеть один раз в минуту, дважды в момент и ни разу в тысячу лет?", a: "Буква 'М'." },
+      { q: "Что имеет четыре ноги, но не может ходить?", a: "Стол." },
+      { q: "Что есть у каждого, но чаще пользуются другие?", a: "Имя." },
+      { q: "Чем выше поднимается, тем меньше становится. Что это?", a: "Свеча." },
+      { q: "Что никогда не спрашивает, но всегда отвечает?", a: "Телефон." },
+      { q: "Что приходит после молнии?", a: "Гром." },
+      { q: "Какой тип комнаты не имеет дверей и окон?", a: "Гриб (mushroom)." },
+      { q: "Какое изобретение позволяет видеть сквозь стены?", a: "Окно." },
+      { q: "Что падает, но не разбивается?", a: "Ночь." }
+    ];
+
+    const container = document.getElementById("quiz-container");
+
+    questions.forEach((item, index) => {
+      const box = document.createElement("div");
+      box.className = "question-box";
+
+      const q = document.createElement("p");
+      q.textContent = (index + 1) + ". " + item.q;
+
+      const a = document.createElement("div");
+      a.className = "answer";
+      a.textContent = item.a;const btn = document.createElement("button");
+      btn.textContent = "Показать ответ";
+      btn.onclick = () => {
+        if (a.style.display === "none") {
+          a.style.display = "block";
+          btn.textContent = "Скрыть ответ";
+        } else {
+          a.style.display = "none";
+          btn.textContent = "Показать ответ";
+        }
+      };
+
+      box.appendChild(q);
+      box.appendChild(btn);
+      box.appendChild(a);
+      container.appendChild(box);
+    });
+  </script>
+</body>
+</html>

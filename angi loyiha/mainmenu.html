@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tilni Tanlang</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: url('https://habrastorage.org/getpro/habr/upload_files/56a/51e/644/56a51e6445045345f9f6338f59fd9294.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: white;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5rem;
+      animation: fadeIn 1s ease;
+    }
+
+    .languages {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    .lang {
+      height: 150px;
+      border-radius: 15px;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.3s;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .lang:hover {
+      transform: scale(1.05);
+    }
+
+    .uzbek {
+      background-image: url('https://flagcdn.com/w320/uz.png');
+    }
+
+    .english {
+      background-image: url('https://flagcdn.com/w320/gb.png'), url('https://flagcdn.com/w320/us.png');
+    }
+
+    .russian {
+      background-image: url('https://flagcdn.com/w320/ru.png');
+    }
+
+    
+    
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Tilni tanlang</h1>
+  <div class="languages">
+    <a href="test-uz.html" class="lang uzbek">O'zbekcha</a>
+    <a href="test-en.html" class="lang english">English</a>
+    <a href="test-ru.html" class="lang russian">Русский</a>
+    
+  </div>
+</body>
+</html>
